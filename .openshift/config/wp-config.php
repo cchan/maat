@@ -54,7 +54,13 @@ $table_prefix  = 'wp_';
 |
 */
 
+//https://codex.wordpress.org/Administration_Over_SSL
 define('FORCE_SSL_ADMIN', true);
+// in some setups HTTP_X_FORWARDED_PROTO might contain 
+// a comma-separated list e.g. http,https
+// so check for https existence
+if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
+       $_SERVER['HTTPS']='on';
 
 /*
 |--------------------------------------------------------------------------
